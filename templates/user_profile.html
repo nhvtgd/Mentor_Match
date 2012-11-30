@@ -1,0 +1,69 @@
+{% extends "user_base.html" %}
+
+<!-- Header
+================================================== -->
+{% block header %}
+<header class="page-header">
+  <div class="inner">
+    <h1>My Profile
+</h1>
+  </div>
+</header>
+{% endblock %}
+
+
+
+{% block userSearch %}{% endblock %}
+{% block userContent %}
+
+ 
+<div class="span8">
+ 
+<div class="well">
+  <h2>My information</h2>
+        <br>  
+        <ul><small>  Name:  {{ currentUser.name }}</small></ul>
+        <ul><small>  Email:  {{ currentUser.email }}</small></ul>
+		<ul><small>  Department :  {{ currentUser.department }}</small></ul> 
+		<ul><small>  Be a mentee?:  {{ currentUser.mentee }}</small></ul> 
+		<ul><small>  Be a mentor?:  {{ currentUser.mentor }}</small></ul> 
+		<ul><small>  Number of Mentees:  {{ currentUser.numMentees }}</small></ul> 
+		<ul><small>  Number of Mentors:  {{ currentUser.numMentors }}</small></ul>
+		<ul><small>  Interests: 
+        {% for i in currentUser.interests.all %}
+		     {{ i }},
+        {% endfor %}
+        </small></ul>
+		<ul><small>  Expertise: 
+        {% for e in currentUser.expertise.all %}
+		     {{ e }},
+        {% endfor %}
+        </small></ul>
+		<ul><small>  Campus:  {{ currentUser.campus }}</small></ul>
+		<ul><small>  Building:  {{ currentUser.building }}</small></ul>
+ </div>
+   
+<div class="well">
+<h2> Mentors </h2>
+{% for mentor in currentUser.mentors.all %}
+    <li><a href="/users/{{mentor.username}}">{{mentor}}</a></li>
+{% endfor %}
+</div>
+
+<div class="well">
+<h2> Mentees </h2>
+{% for mentee in currentUser.mentees.all %}
+    <li><a href="/users/{{mentee.username}}">{{mentee}}</a></li>
+{% endfor %}
+
+</div>
+
+ <div class="well">
+ </div>
+
+</div>
+
+      
+   
+{% endblock %}
+

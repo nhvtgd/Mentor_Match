@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Header
+================================================== -->
+{% block header %}
+<header class="page-header">
+  <div class="inner">
+    <h1>Users
+    <small> Sharing the passion for mentoring </small>
+</h1>
+  </div>
+</header>
+{% endblock %}
+{% block sidebar %}
+<!-- Sidebar================================================== -->
+<div class="row-fluid">
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">User options</li>
+                <li><a href="/profile/">View Profile</a></li>
+                <li><a href="/profile/edit/">Edit Profile</a></li>
+                <li><a href="/add_mentor/{{currentUser.username}}">Add Mentor</a></li>
+                <!-- 
+                <li><a href="/users/viewAll/">view all profiles</a></li>
+                <li><a href="/users/">search profiles</a></li>
+                -->
+            </ul>
+        </div><!--/.well -->
+    </div><!--/span-->
+{% endblock %}
+
+
+{% block userSearch %}{% endblock %}
+{% block userContent %}
+
+ 
+<div class="span8">
+ 
+<div class="well">
+  <h2> {{ currentUser.name }} </h2>
+        <br>  
+        <ul><small>  Name:  {{ currentUser.name }}</small></ul>
+        <ul><small>  Email:  {{ currentUser.email }}</small></ul>
+		<ul><small>  Department :  {{ currentUser.department }}</small></ul> 
+		<ul><small>  Be a mentee?:  {{ currentUser.mentee }}</small></ul> 
+		<ul><small>  Be a mentor?:  {{ currentUser.mentor }}</small></ul> 
+		<ul><small>  Number of Mentees:  {{ currentUser.numMentees }}</small></ul> 
+		<ul><small>  Number of Mentors:  {{ currentUser.numMentors }}</small></ul>
+		<ul><small>  Interests: 
+        {% for i in currentUser.interests.all %}
+		     {{ i }},
+        {% endfor %}
+        </small></ul>
+		<ul><small>  Expertise: 
+        {% for e in currentUser.expertise.all %}
+		     {{ e }},
+        {% endfor %}
+        </small></ul>
+		<ul><small>  Campus:  {{ currentUser.campus }}</small></ul>
+		<ul><small>  Building:  {{ currentUser.building }}</small></ul>
+ </div>
+   
+<div class="well">
+<h2> Mentors </h2>
+{% for mentor in currentUser.mentors.all %}
+    <li><a href="/users/{{mentor.username}}">{{mentor}}</a></li>
+{% endfor %}
+</div>
+
+<div class="well">
+<h2> Mentees </h2>
+{% for mentee in currentUser.mentees.all %}
+    <li><a href="/users/{{mentee.username}}">{{mentee}}</a></li>
+{% endfor %}
+</div>
+
+ <div class="well">
+ </div>
+
+</div>
+
+      
+{% endblock %}
+{% endblock %}
+

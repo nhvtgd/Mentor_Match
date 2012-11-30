@@ -1,0 +1,31 @@
+{% extends "user_base.html" %}
+
+<!-- Header
+================================================== -->
+{% block header %}
+<header class="page-header">
+  <div class="inner">
+    <h1>Your Matches
+    <small>Pick one you like!</small>
+</h1>
+  </div>
+</header>
+{% endblock %}
+
+{% block userSearch %}
+{% endblock %}
+
+{% block userContent %}
+<div class="span8">
+    <div class="well">
+        <h2> Your matches are:</h2>
+        {% for c in candidateArray %}
+            <li><a href="/users/{{c.username}}">{{c.name}}</a></li>
+        {% endfor %}
+    <div/>
+<div/>
+
+
+{% endblock %}
+
+
